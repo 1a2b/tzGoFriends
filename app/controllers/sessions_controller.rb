@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_filter :authorize, :only => [:new, :create]
 
   def new
-    @vk_url = VkontakteApi.authorization_url(scope: [:photo], state: get_state)
+    @vk_url = VkontakteApi.authorization_url(scope: [:photos], state: get_state)
   end
 
   def create
