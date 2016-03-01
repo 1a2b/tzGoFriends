@@ -27,6 +27,7 @@ gem 'haml', '~> 4.0.0'
 
 gem 'vkontakte_api', '~> 1.4'
 
+gem 'sidekiq'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
