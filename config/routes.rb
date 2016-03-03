@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   get 'callback' => 'sessions#create'
   get 'session/new' => 'sessions#new'
   delete 'session/destroy' => 'sessions#destroy', as: :session_destroy
+
+  namespace :admin do
+    resources :users, only: [:show, :index]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

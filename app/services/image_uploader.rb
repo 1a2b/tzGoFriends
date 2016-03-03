@@ -1,7 +1,7 @@
 class ImageUploader
 
-  def initialize(token, uid)
-    @app = VkontakteApi::Client.new(token)
+  def initialize(token, uid, file)
+    @app ||= VkontakteApi::Client.new(token)
     @uid = uid
   end
 

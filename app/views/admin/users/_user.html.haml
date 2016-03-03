@@ -1,0 +1,21 @@
+%li.user
+  #user_id
+    %span user id: #{user.id}
+  #user_uid
+    %span user uid: #{user.uid}
+  #user_vk_url
+    = link_to_vk(user.uid)
+  #user_first_name
+    user first name: #{user.first_name}
+  #user_last_name
+    user last name: #{user.last_name}
+  #user_bdate
+    user birthday: #{user.bdate}
+  #user_sex
+    user sex: #{user.sex}
+  #user_city
+    user city: #{user.city}
+  #user_country
+    user country: #{user.country}
+  #user_photo
+    = image_tag(user.photo)
