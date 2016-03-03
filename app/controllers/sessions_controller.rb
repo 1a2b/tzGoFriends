@@ -9,17 +9,8 @@ class SessionsController < ApplicationController
     redirect_to session_new_path, alert: 'Ошибка авторизации, попробуйте войти еще раз.' and return if get_state.present? && get_state != params[:state]
 
     vk = VkontakteApi.authorize(code: params[:code])
-    user_info = vk.users.get(uid: session[:vk_id],
-      fields: [:first_name,
-               :last_name,
-               :sex,
-               :bdate,
-               :city,
-               :country,
-               :photo_200_orig
-              ]).first
 
-    user = User.set_user_by_vk(vk.user_id, user_info)
+    user = User.set_user_by_vk(vk.user_id)
 
     session[:token] = vk.token
     session[:vk_id] = vk.user_id
