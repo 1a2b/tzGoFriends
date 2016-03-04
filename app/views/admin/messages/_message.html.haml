@@ -1,0 +1,7 @@
+%li.message{id: "message_id_#{message.id}"}
+  #message_id
+    %span message id: #{message.id}
+  #message_image
+    = image_tag(message.image.url)
+  #edit_message
+    = render partial: 'edit', locals:{ message: message }

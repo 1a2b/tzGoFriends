@@ -26,8 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml', '~> 4.0.0'
 
 gem 'vkontakte_api', '~> 1.4'
-
 gem 'sidekiq'
+gem 'paperclip', '~> 4.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

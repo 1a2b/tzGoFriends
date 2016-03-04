@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   delete 'session/destroy' => 'sessions#destroy', as: :session_destroy
 
   namespace :admin do
-    resources :users, only: [:show, :index]
+    resources :users, only: [:show, :index, :update]
+    resources :messages, only: [:show, :index, :update, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

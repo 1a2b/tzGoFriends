@@ -1,0 +1,8 @@
+Admin view all messages
+= form_for @message, url: admin_messages_path, method: :post, authenticity_token: true, remote: true, html: { :'data-type' => :json, multipart: true, id: 'upload_form'} do |f|
+  = f.file_field :image
+  = f.text_field :message
+  = f.submit
+
+%ul.messages
+  =render partial: 'message', collection: @messages

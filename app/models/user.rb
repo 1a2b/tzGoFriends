@@ -1,8 +1,13 @@
 class User < ActiveRecord::Base
   validates :uid, presence: true, uniqueness: true
+  belongs_to :message
+
+  def admin?
+    self.type == 'Admin'
+  end
 
   def self.set_user_by_vk(uid)
-    User.where(uid: uid).first_or_create(uid)
+    User.where(uid: uid).first_or_create(uid: uid)
   end
 
   def self.update_all_users_basic_info
@@ -22,18 +27,16 @@ class User < ActiveRecord::Base
     end
   end
 
-  private
-
-  def update_user(user_info)
+  def self.update_user(user_info)
     user = User.find_by_uid(user_info[:id])
     user.update(get_user_hash(user_info))
   end
 
-  def get_sex(sex)
+  def self.get_sex(sex)
     sex == 1 ? 'Женский' : 'Мужской'
   end
 
-  def get_user_hash(user_info)
+  def self.get_user_hash(user_info)
     {
       first_name: user_info[:first_name] || 'не указан',
       last_name: user_info[:last_name] || 'не указан',

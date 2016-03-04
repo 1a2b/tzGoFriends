@@ -1,4 +1,4 @@
-%li.user
+%li.user{id: "user_id_#{user.id}"}
   #user_id
     %span user id: #{user.id}
   #user_uid
@@ -19,3 +19,8 @@
     user country: #{user.country}
   #user_photo
     = image_tag(user.photo)
+  - if user.message
+    #uploaded_message
+      message: #{user.message.message}
+    #uploaded_image
+      = image_tag user.message.image.url
