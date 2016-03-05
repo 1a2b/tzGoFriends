@@ -14,14 +14,14 @@ class Admin::MessagesController < ApplicationController
   def create
     Message.create(message_params)
 
-    redirect_to_admin_message('Message created')
+    redirect_to_admin_message('Сообщение создано')
   end
 
   def update
     message = find_message
     message.update_attributes(message_params)
 
-    redirect_to_admin_message('Message updated')
+    redirect_to_admin_message('Сообщение обновлено')
   end
 
   private

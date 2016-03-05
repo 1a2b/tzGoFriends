@@ -1,3 +1,4 @@
-#home index
-= current_user
-= link_to 'log_out', session_destroy_path, method: :delete
+#home
+  #welcome
+    Привет, #{current_user.first_name}
+    = link_to 'Выйти', session_destroy_path, method: :delete

@@ -24,12 +24,10 @@ class ImageUploader
 
   def update_user_uploads_info
     @user.update(last_post_at: Time.now)
-    @user.update(posted_message_id: @user.message.id)
+    @user.update(posted_message_id: @user.message.id) unless @user.message.nil?
   end
 
   def upload_img(format = 'image/jpeg')
-    img_url = @user.message.image.path
-    caption = @user.message.message
     album_id = first_or_create_gofriends.id
     url = get_upload_url(album_id)
 
@@ -38,6 +36,16 @@ class ImageUploader
     upload[:album_id] = upload.delete(:aid)
     upload[:caption] = caption
     @app.photos.save(upload)
+  end
+
+  def img_url
+    default_url = "app/assets/images/#{Rails.application.config.default_image_url}"
+    @user.message.nil? ? default_url : @user.message.image.path
+  end
+
+  def caption
+    default_message = Rails.application.config.default_message
+    @user.message.nil? ? default_message : @user.message.message
   end
 
   def first_or_create_gofriends

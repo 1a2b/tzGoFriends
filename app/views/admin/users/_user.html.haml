@@ -19,10 +19,7 @@
     user country: #{user.country}
   #user_photo
     = image_tag(user.photo)
-  - if user.message
-    #uploaded_message
-      message: #{user.message.message}
-    #uploaded_image
-      = image_tag user.message.image.url
+  = message(user)
+
   #edit_message
     = render partial: 'edit', locals: { user: user }
