@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304122615) do
+ActiveRecord::Schema.define(version: 20160305132859) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "message"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160304122615) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "uid"
     t.string   "first_name"
     t.string   "last_name"
@@ -36,6 +36,10 @@ ActiveRecord::Schema.define(version: 20160304122615) do
     t.string   "photo"
     t.string   "type"
     t.integer  "message_id"
+    t.string   "last_post_at"
+    t.integer  "posted_message_id"
+    t.string   "token"
+    t.string   "token_expires_at"
   end
 
 end

@@ -9,21 +9,22 @@ class SessionsController < ApplicationController
     redirect_to session_new_path, alert: 'Ошибка авторизации, попробуйте войти еще раз.' and return if get_state.present? && get_state != params[:state]
 
     vk = VkontakteApi.authorize(code: params[:code])
-
     user = User.set_user_by_vk(vk.user_id)
 
-    session[:token] = vk.token
-    session[:vk_id] = vk.user_id
-    session[:expires_at] = vk.expires_at
     session[:user_id] = user.id
+    session[:expires_at] = vk.expires_at
 
+    user.update_token(vk.token, vk.expires_at)
+    user.update_basic_info
 
-    flash[:notice] = 'Вы успешно авторизировались'
+    flash[:notice] = 'Вы успешно авторизировались, мы загрузили вам картинку в альбом'
     redirect_to root_url
   end
 
   def destroy
     close_session
+
+    flash[:notice] = 'Вы успешно вышли из приложения'
     redirect_to root_path
   end
 

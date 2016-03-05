@@ -10,9 +10,22 @@ class User < ActiveRecord::Base
     User.where(uid: uid).first_or_create(uid: uid)
   end
 
-  def self.update_all_users_basic_info
+  def update_token(token, expires_at)
+    self.update(token: token, token_expires_at: expires_at)
+  end
+
+  def update_basic_info
+    vk_user_info = get_vk_users_info([self.uid]).first
+    update_user(vk_user_info)
+  end
+
+  def update_user(user_info)
+    user = User.find_by_uid(user_info[:id])
+    user.update(get_user_hash(user_info))
+  end
+
+  def get_vk_users_info(user_ids)
     vk = VkontakteApi::Client.new
-    user_ids = User.all.pluck(:uid)
     vk_users = vk.users.get(user_ids: user_ids,
       fields: [:first_name,
                :last_name,
@@ -22,21 +35,9 @@ class User < ActiveRecord::Base
                :country,
                :photo_200_orig
               ])
-    vk_users.each do |user_info|
-      update_user(user_info)
-    end
   end
 
-  def self.update_user(user_info)
-    user = User.find_by_uid(user_info[:id])
-    user.update(get_user_hash(user_info))
-  end
-
-  def self.get_sex(sex)
-    sex == 1 ? 'Женский' : 'Мужской'
-  end
-
-  def self.get_user_hash(user_info)
+  def get_user_hash(user_info)
     {
       first_name: user_info[:first_name] || 'не указан',
       last_name: user_info[:last_name] || 'не указан',
@@ -47,4 +48,9 @@ class User < ActiveRecord::Base
       sex: get_sex(user_info[:sex])
     }
   end
+
+  def get_sex(sex)
+    sex == 1 ? 'Женский' : 'Мужской'
+  end
+
 end

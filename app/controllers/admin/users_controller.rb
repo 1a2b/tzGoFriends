@@ -1,44 +1,25 @@
 class Admin::UsersController < ApplicationController
-  skip_before_action :authorize
   before_action :admin_autorize
 
   def index
     @users = User.all
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
   def update
-    @user = User.find(params[:id])
-    @user.update_attributes(user_params)
-  end
+    user = User.find(params[:id])
+    user.update_attributes(user_params)
 
-
-  def upload_image
-
+    redirect_to_admin_users('Вы успешно обновили юзера')
   end
 
   private
 
-  def admin_autorize
-    unless current_user.admin?
-      flash[:error] = 'You need to login as admin'
-      redirect_to root_path
-    end
+  def redirect_to_admin_users(msg)
+    flash[:notice] = msg
+    redirect_to admin_users_path
   end
 
   def user_params
-    params.require(:user).permit(:uid, :image, :message_id)
+    return params.require(params[:user] ? :user : :admin).permit(:uid, :image, :message_id)
   end
 end

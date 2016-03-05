@@ -24,3 +24,5 @@
       message: #{user.message.message}
     #uploaded_image
       = image_tag user.message.image.url
+  #edit_message
+    = render partial: 'edit', locals: { user: user }

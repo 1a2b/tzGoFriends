@@ -2,9 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authorize
-  before_filter :current_user
+  before_action :current_user
 
-  helper_method :logged_in?
   helper_method :current_user
 
   def current_user
@@ -12,15 +11,17 @@ class ApplicationController < ActionController::Base
     User.find(session[:user_id])
   end
 
-  def logged_in?
-    session[:token].present?
-  end
-
   protected
+
+  def admin_autorize
+    unless current_user.admin?
+      flash[:error] = 'Вы должны войти как админ'
+      redirect_to root_path
+    end
+  end
 
   def close_session
     reset_session
-    flash[:notice] = 'Вы успешно разлогинились'
   end
 
   private
@@ -31,7 +32,9 @@ class ApplicationController < ActionController::Base
 
   def authorize
     close_session if not_valid_session?
-    flash[:notice] = 'Please Log in'
-    redirect_to session_new_path unless logged_in?
+    unless current_user
+      flash[:notice] = 'Пожалуйста, залогиньтесь с помощью Вконтакте'
+      redirect_to session_new_path
+    end
   end
 end

@@ -1,7 +1,7 @@
-%li.message{id: "message_id_#{message.id}"}
+%li.message
   #message_id
     %span message id: #{message.id}
   #message_image
     = image_tag(message.image.url)
   #edit_message
-    = render partial: 'edit', locals:{ message: message }
+    = render partial: 'upload_form', locals: { message: message, method: :put, url: admin_message_path(message.id)}
