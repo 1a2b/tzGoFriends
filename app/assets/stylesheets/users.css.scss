@@ -1,0 +1,25 @@
+.users {
+  .user_info {
+    padding-left: 50px;
+  }
+
+  td {
+    width: 33%
+  }
+
+  .user_avatar {
+    img {
+      max-height: 100%;
+    }
+  }
+
+  .user_message {
+    img {
+      max-height: 200px;
+    }
+
+    #edit_message form {
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.navbar {
+  height: 50px;
+}
+
+.content {
+  overflow-y: auto;
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+}
+
+.log_in,
+.log_out{
+  margin-top: 7px;
+  float: right;
+}
+
+.center {
+  text-align: center;
+}

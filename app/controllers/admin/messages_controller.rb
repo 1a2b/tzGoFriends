@@ -1,35 +1,36 @@
 class Admin::MessagesController < ApplicationController
   before_action :admin_autorize
-  skip_before_action :verify_authenticity_token
 
   def index
     @messages = Message.all
     @message = Message.new
   end
 
-  def show
-    @message = find_message
-  end
-
   def create
-    Message.create(message_params)
+    message = Message.new(message_params)
 
-    redirect_to_admin_message('Сообщение создано')
+    if message.save
+      flash[:success] = 'Сообщение создано'
+    else
+      flash[:error] = 'Сообщение не создано'
+    end
+
+    redirect_to admin_messages_path
   end
 
   def update
     message = find_message
-    message.update_attributes(message_params)
 
-    redirect_to_admin_message('Сообщение обновлено')
+    if message.update_attributes(message_params)
+      flash[:success] = 'Сообщение обновлено'
+    else
+      flash[:error] = 'Сообщение не обновлено'
+    end
+
+    redirect_to admin_messages_path
   end
 
   private
-
-  def redirect_to_admin_messages(msg)
-    flash[:notice] = msg
-    redirect_to admin_messages_path
-  end
 
   def find_message
     Message.find(params[:id])

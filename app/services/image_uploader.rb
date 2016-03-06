@@ -39,13 +39,11 @@ class ImageUploader
   end
 
   def img_url
-    default_url = "app/assets/images/#{Rails.application.config.default_image_url}"
-    @user.message.nil? ? default_url : @user.message.image.path
+    @user.message.image.path
   end
 
   def caption
-    default_message = Rails.application.config.default_message
-    @user.message.nil? ? default_message : @user.message.message
+    @user.message.message
   end
 
   def first_or_create_gofriends

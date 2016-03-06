@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
   def authorize
     close_session if not_valid_session?
     unless current_user
-      flash[:notice] = 'Пожалуйста, авторизируйтесь с помощью Вконтакте'
-      redirect_to session_new_path
+      flash[:error] = 'Пожалуйста, авторизируйтесь с помощью Вконтакте'
+      redirect_to log_in_path
     end
   end
 end

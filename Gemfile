@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml', '~> 4.0.0'
-
+gem 'bootstrap-sass'
 gem 'vkontakte_api', '~> 1.4'
 gem 'sidekiq'
 gem 'paperclip', '~> 4.3'

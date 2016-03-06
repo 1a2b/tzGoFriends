@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Message.create(message: 'GoFriends', image: File.new(Rails.root.join('app', 'assets', 'images', 'default.jpg')))

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
   get 'callback' => 'sessions#create'
-  get 'session/new' => 'sessions#new'
-  delete 'session/destroy' => 'sessions#destroy', as: :session_destroy
+  get 'log_in' => 'sessions#new'
+  delete 'log_out' => 'sessions#destroy'
+  put 'update_all_users' => 'admin/users#update_all_users'
 
   namespace :admin do
     resources :users, only: [:show, :index, :update]

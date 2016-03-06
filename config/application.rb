@@ -8,8 +8,6 @@ Bundler.require(*Rails.groups)
 
 module TzGoFriends
   class Application < Rails::Application
-    config.default_image_url = "default.jpg"
-    config.default_message = "GoFriends"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

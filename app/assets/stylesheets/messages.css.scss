@@ -1,0 +1,17 @@
+.messages_page {
+  .messages {
+    list-style: url;
+  }
+
+  .create_message {
+    float: right;
+    margin-right: 50px
+  }
+
+  .edit_message {
+
+    #message_message {
+    width: 20%;
+    }
+  }
+}

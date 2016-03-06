@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   end
 
   def self.set_user_by_vk(uid)
-    User.where(uid: uid).first_or_create(uid: uid)
+    User.where(uid: uid).first_or_create(uid: uid, message_id: 1)
   end
 
   def update_token(token, expires_at)

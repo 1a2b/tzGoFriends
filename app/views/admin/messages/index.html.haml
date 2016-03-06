@@ -1,4 +1,7 @@
-Admin view all messages
-= render partial: 'upload_form', locals: { message: @message, method: :post, url: admin_messages_path }
-%ul.messages
-  =render partial: 'message', collection: @messages
+.messages_page
+  %h4.center Admin view all messages
+  .create_message
+    %h4 Create new message
+    = render partial: 'upload_form', locals: { message: @message, method: :post, url: admin_messages_path }
+  %ul.messages
+    =render partial: 'message', collection: @messages

@@ -1,25 +1,36 @@
-%li.user{id: "user_id_#{user.id}"}
-  #user_id
-    %span user id: #{user.id}
-  #user_uid
-    %span user uid: #{user.uid}
-  #user_vk_url
-    = link_to_vk(user.uid)
-  #user_first_name
-    user first name: #{user.first_name}
-  #user_last_name
-    user last name: #{user.last_name}
-  #user_bdate
-    user birthday: #{user.bdate}
-  #user_sex
-    user sex: #{user.sex}
-  #user_city
-    user city: #{user.city}
-  #user_country
-    user country: #{user.country}
-  #user_photo
-    = image_tag(user.photo)
-  = message(user)
-
-  #edit_message
-    = render partial: 'edit', locals: { user: user }
+%tr.user
+  %td.user_info
+    #user_id
+      %span user id:
+      %span=user.id
+    #user_uid
+      %span user uid:
+      %span=user.uid
+    #user_vk_url
+      = link_to_vk(user.uid)
+    #user_first_name
+      %span user first name:
+      %span=user.first_name
+    #user_last_name
+      %span user last name:
+      %span=user.last_name
+    #user_bdate
+      %span user birthday:
+      %span=user.bdate
+    #user_sex
+      %span user sex:
+      %span=user.sex
+    #user_city
+      %span user city:
+      %span=user.city
+    #user_country
+      %span user country:
+      %span=user.country
+  %td.user_avatar
+    #user_photo
+      =image_tag(user.photo)
+  %td.user_message
+    #user_message
+      =message(user)
+      #edit_message
+        = render partial: 'edit', locals: { user: user }

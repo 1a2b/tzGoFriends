@@ -1,0 +1,16 @@
+-message_to_user = admin? ? 'Admin Panel' : 'User Navigarion'
+%nav.navbar.navbar-inverse.navbar-static-top
+  .container
+    .navbar-header
+      =link_to message_to_user, root_path, class:' navbar-brand'
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        - if admin?
+          %li.active
+            = link_to 'Users', admin_users_path
+          %li.active
+            = link_to 'Messages', admin_messages_path
+          %li.active
+            = link_to 'Update All Users', update_all_users_path, method: :put
+      %li.active
+        = auth_buttons
