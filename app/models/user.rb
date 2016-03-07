@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
     update_user(vk_user_info)
   end
 
+  protected
+
   def update_user(user_info)
     user = User.find_by_uid(user_info[:id])
     user.update(get_user_hash(user_info))
