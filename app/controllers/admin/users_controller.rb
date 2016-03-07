@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
+    user = User.find_by_id(params[:id])
+
     if user.update_attributes(user_params)
       flash[:success] = 'Вы успешно обновили юзера'
     else
@@ -29,6 +30,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(params[:user] ? :user : :admin).permit(:uid, :image, :message_id)
+    params.require(params[:user] ? :user : :admin).permit(:message_id)
   end
 end

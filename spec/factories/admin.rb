@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :admin do
     type 'Admin'
-    uid 1
+    uid { rand(1000) }
   end
 end
