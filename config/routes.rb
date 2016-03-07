@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   put 'update_all_users' => 'admin/users#update_all_users'
 
   namespace :admin do
-    resources :users, only: [:show, :index, :update]
-    resources :messages, only: [:show, :index, :update, :create]
+    resources :users, only: [:index, :update]
+    resources :messages, only: [:index, :update, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
