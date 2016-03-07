@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    redirect_to session_new_path, alert: 'Ошибка авторизации, попробуйте войти еще раз.' and return if get_state.present? && get_state != params[:state]
+    redirect_to log_in_path, alert: 'Ошибка авторизации, попробуйте войти еще раз.' and return if get_state.present? && get_state != params[:state]
 
     vk = VkontakteApi.authorize(code: params[:code])
     user = User.set_user_by_vk(vk.user_id)
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     user.update_basic_info
 
     flash[:notice] = 'Вы успешно авторизировались, мы загрузили вам картинку в альбом'
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def destroy
