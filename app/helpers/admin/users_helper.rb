@@ -4,8 +4,8 @@ module Admin::UsersHelper
   end
 
   def message(user)
-    url = user.message.image.url
-    message = user.message.message
+    url = user.message ? user.message.image.url : 'no_image_url'
+    message = user.message ? user.message.message : 'no_message'
 
     content_tag(:div, id: 'message') do
        concat(content_tag(:div, "message: #{message}"))

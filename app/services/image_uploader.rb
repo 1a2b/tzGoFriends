@@ -31,7 +31,7 @@ class ImageUploader
     album_id = first_or_create_gofriends.id
     url = get_upload_url(album_id)
 
-    upload = VkontakteApi.upload(url: url, file1: [img_url, format])
+    upload = VkontakteApi.upload(url: url, photo: [img_url, format])
     #Need for new api, :aid => :album_id
     upload[:album_id] = upload.delete(:aid)
     upload[:caption] = caption
@@ -39,7 +39,8 @@ class ImageUploader
   end
 
   def img_url
-    @user.message.image.path
+    @user.message.image.copy_to_local_file(:original, 'tmp/temp.jpg')
+    'tmp/temp.jpg'
   end
 
   def caption
